@@ -1,0 +1,136 @@
+
+r_exp  0.892736898 r_exp_dash  2.73894805 r_wp  8.81791554 r_wp_dash  27.0536736 r_p  6.74752558 r_p_dash  31.1617086 weighted_Durbin_Watson  0.0969418959 gof  9.87739564
+iters 100000
+
+
+do_errors
+xdd filename
+'xdd C:\Users\NeilsonLab\NeilsonLabData\TallPodd\APS_Oct_2018\PKT-Na2CO3_YCl3-an_Mn2O3_650_10degCmin_O2_2\SequentialRefinement\1.xye
+   r_exp  0.891468934 r_exp_dash  2.67359273 r_wp  8.14600264 r_wp_dash  24.4305692 r_p  6.2558582 r_p_dash  26.9417833 weighted_Durbin_Watson  0.109529078 gof  9.13773025
+   x_calculation_step 0.02
+   bkg @  9260.88233`_27.6469628 -2738.63449`_41.8910714 -1236.77107`_42.8872611  1143.15598`_42.2260547 -558.546488`_38.2421736  6.39493592`_38.0412956  851.671781`_37.5735349 -939.173691`_36.0461169  337.521149`_35.6931824  544.340254`_36.0044878 -806.669311`_33.3415861  345.772903`_33.844712  395.968543`_32.1783351 -193.091796`_31.9187607 -313.330754`_30.5894093  421.591487`_30.1801783
+   Zero_Error(@,-0.00697`_0.00039)
+   LP_Factor( 0)
+   Rs 10000
+      User_Defined_Dependence_Convolution(gauss_fwhm, , , 0.03527767113)
+      User_Defined_Dependence_Convolution(lor_fwhm,  1/Cos(Th) , , 0.005364859549)
+   lam
+      ymin_on_ymax  0.001
+      la  1 lo  0.2413 lh  0.0001
+   str 
+   	LVol_FWHM_CS_G_L( 1, 71.75286`_15.20396, 0.89, 100.31113`_21.25527,,,@, 112.70914`_23.88232)
+      e0_from_Strain( 0.00019`_0.00009,,,@, 0.08792`_0.04255)
+      r_bragg rBragg_Mn2O3  3.9273284
+      phase_MAC  1.15542925
+      phase_name "Bixbyite C"
+      MVW( Mass_Mn2O3  2525.989, Volume_Mn2O3  843.560`_0.144, 35.317`_0.595)
+      space_group Ia-3
+      scale Scale_Mn2O3  2.68238179e-006`_3.204e-008
+      Phase_LAC_1_on_cm( 5.74524`_0.00098)
+      Phase_Density_g_on_cm3( 4.97239`_0.00085)
+      Cubic(@  9.448698`_0.000539)
+      site Mn1 num_posns  8 x  0 y  0 z  0 occ Mn+3  1 beq  2
+      site Mn2 num_posns  24 x  0.28508 y  0 z  0.25 occ Mn+3  1 beq  2
+      site O1 num_posns  48 x  0.12913 y  0.14708 z  -0.08347 occ O-2  1 beq 2
+  str 
+      LVol_FWHM_CS_G_L( 1, 127.32395, 0.89, 178.00000,,,, 200)
+      r_bragg rBragg_Na2CO3  9.28546756
+      phase_MAC  0.23177255
+      phase_name "Natrite"
+      MVW( Mass_Na2CO3  423.954, Volume_Na2CO3  320.619`_0.402, 13.573`_0.710)
+      space_group C12/m1
+      scale Scale_Na2CO3  1.831054628e-005
+      Phase_LAC_1_on_cm( 0.50891`_0.00064)
+      Phase_Density_g_on_cm3( 2.19573`_0.00275)
+      a lpa_Na2CO3  9.046207015
+      b lpb_Na2CO3  5.65318368
+      c lpc_Na2CO3  6.526092432
+      be beta_Na2CO3  97.1795753_LIMIT_MAX_97.3795753
+      site Na1 num_posns  2 x  0 y  0 z  0 occ Na+1  1 beq  5
+      site Na2 num_posns  2 x  0 y  0 z  0.5 occ Na+1  1 beq  5
+      site Na3 num_posns  4 x  0.17047 y  0.5 z  0.7478 occ Na+1  1 beq  5
+      site C1 num_posns  4 x  0.1645 y  0.5 z  0.2497 occ C  1 beq  5
+      site O1 num_posns  8 x  0.1023 y  0.2944 z  0.2859 occ O-2  1 beq  5
+      site O2 num_posns  4 x  0.2894 y  0.5 z  0.1781 occ O-2  1 beq  5   
+   str 
+      LVol_FWHM_CS_G_L( 1, 957.56600`_150241.32932, 0.89, 1327.68708`_331348.53556,@, 9990.23223`_54737957.22944_LIMIT_MIN_0.3,@, 1528.61473`_12674.68168_LIMIT_MIN_0.3)
+      e0_from_Strain( 0.00024`_0.00144,@, 0.03785`_1.00451_LIMIT_MIN_0.0001,@, 0.09858`_0.15971)
+      r_bragg rBragg_NaCl  2.2813736
+      phase_MAC  0.470175533
+      phase_name "NaCl"
+      MVW( Mass_NaCl  233.771, Volume_NaCl  191.496`_0.036, 41.459`_0.820)
+      space_group Fm-3m
+      scale Scale_NaCl  0.000149882762`_4.429e-006
+      Phase_LAC_1_on_cm( 0.95311`_0.00018)
+      Phase_Density_g_on_cm3( 2.02713`_0.00038)
+      Cubic(@  5.763945`_0.000362)
+      site Na1 num_posns  4 x  0 y  0 z  0 occ Na  1 beq @  5.83822`_0.39661 min =0; max =10;
+      site Cl1 num_posns  4 x  0.5 y  0.5 z  0.5 occ Cl  1 beq @  5.61802`_0.33949 min =0; max =10;
+  str 
+      LVol_FWHM_CS_G_L( 1, 127.32395, 0.89, 178.00000,,,, 200)
+      r_bragg rBragg_Y3O4Cl  5.19282411
+      phase_MAC  3.94213457
+      phase_name "Y3O4Cl"
+      MVW( Mass_Y3O4Cl  1464.673, Volume_Y3O4Cl  551.876`_0.341, 5.569`_0.192)
+      space_group Cmcm
+      scale Scale_Y3O4Cl  1.11502267e-006`_3.639e-008
+      Phase_LAC_1_on_cm( 17.37321`_0.01072)
+      Phase_Density_g_on_cm3( 4.40706`_0.00272)
+      a @  4.004529`_0.001250
+      b @  11.819677`_0.004207
+      c @  11.659618`_0.004618
+      site Y1 num_posns  4 x  0 y  0.61825 z  0.25 occ Y+3  1 beq  2
+      site Y2 num_posns  8 x  0 y  0.31452 z  0.10281 occ Y+3  1 beq  2
+      site O1 num_posns  4 x  0 y  0.4345 z  0.25 occ O-2  1 beq  2
+      site O2 num_posns  4 x  0 y  0.1904 z  0.25 occ O-2  1 beq  2
+      site O3 num_posns  8 x  0 y  0.2697 z  0.5894 occ O-2  1 beq  2
+      site Cl1 num_posns  4 x  0 y  0 z  0 occ Cl-1  1 beq  2
+
+  str 
+      LVol_FWHM_CS_G_L( 1, 21.94119517, 0.89, 24.3538414,@, 35.48830288,@, 70.92275899)
+      e0_from_Strain( 0.001167976025,@, 0.173773763_LIMIT_MIN_0.0001,@, 0.4762345903)
+      r_bragg rBragg_Y2O3 5.951906373
+      phase_MAC 4.203665097
+      phase_name "Y2O3"
+      MVW( Mass_Y2O3 3612.9584, Volume_Y2O3 1217.989137, 0.5424176885)
+      space_group Ia-3
+      scale Scale_Y2O3 2.088727441e-008
+      Phase_LAC_1_on_cm( 20.70604)
+      Phase_Density_g_on_cm3( 4.925711142)
+      Cubic(@ 10.6794234)
+      site Y1 num_posns 8 x  0.25 y  0.25 z  0.25 occ Y+3  1 beq @ 0.8419755442 min =0; max =10;
+      site Y2 num_posns 24 x  -0.0328 y  0 z  0.25 occ Y+3  1 beq @ 1.108052652 min =0; max =10;
+      site O1 num_posns 48 x  0.389 y  0.154 z  0.378 occ O-2  1 beq @ 1.507556146 min =0; max =10;
+      
+' Output to file:
+'{{{
+  out "C:\Users\NeilsonLab\NeilsonLabData\TallPodd\APS_Oct_2018\PKT-Na2CO3_YCl3-an_Mn2O3_650_10degCmin_O2_2\SequentialRefinement\142-163\Results_2.txt" append
+'  Out_String("File: ") Out_String(filename )
+   Out(Get(r_wp), " %11.5f")
+   Out(Get (gof), 	" %11.5f")
+   Out(rBragg_Na2CO3, 	" %11.5f")
+   Out(rBragg_Mn2O3, 	" %11.5f")
+   Out(rBragg_NaCl, 	" %11.5f")
+   Out(rBragg_Y3O4Cl, 	" %11.5f")
+   Out(rBragg_Y2O3, 	" %11.5f")
+   Out(Scale_Na2CO3,			" %11.9f")
+   Out(Mass_Na2CO3,			" %11.5f")
+   Out(Volume_Na2CO3,			" %11.9f")
+   Out(Scale_Mn2O3,			" %11.9f")
+   Out(Mass_Mn2O3,			" %11.5f")
+   Out(Volume_Mn2O3,			" %11.9f")
+   Out(Scale_NaCl,			" %11.9f")
+   Out(Mass_NaCl,			" %11.5f")
+   Out(Volume_NaCl,			" %11.9f")
+   Out(Scale_Y3O4Cl,			" %11.9f")
+   Out(Mass_Y3O4Cl,			" %11.5f")
+   Out(Volume_Y3O4Cl,			" %11.9f")
+   Out(Scale_Y2O3,			" %11.9f")
+   Out(Mass_Y2O3,			" %11.5f")
+   Out(Volume_Y2O3,			" %11.9f")
+   Out(lpa_Na2CO3,			" %11.9f")
+   Out(lpb_Na2CO3,			" %11.9f")
+   Out(lpc_Na2CO3,			" %11.9f")
+   Out(beta_Na2CO3,			" %11.9f")
+   Out_String(\n)
+'  '}}}

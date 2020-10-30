@@ -1,20 +1,19 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import os
 
 module_dir = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == "__main__":
     setup(
-        name='thermochemical_connectivity',
+        name='thermochemical-connectivity',
         version='0.0.1',
         description='Code/exp_data for thermochemical connectivity manuscript.',
         long_description=open(os.path.join(module_dir, 'README.md')).read(),
         url='https://github.com/GENESIS-EFRC/thermochemical-connectivity',
         author=['Matthew McDermott', 'Paul Todd'],
-        author_email=['mcdermott@lbl.gov',''],
+        author_email=['mcdermott@lbl.gov', 'ptodd@nrel.gov'],
         license='MIT',
-        packages=find_packages(),
-        include_package_data=True,
+        packages=['thermochemical_connectivity'],
         zip_safe=False,
         install_requires=[],
         extras_require={},
