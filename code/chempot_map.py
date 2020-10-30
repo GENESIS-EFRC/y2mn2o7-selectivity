@@ -11,12 +11,12 @@ import plotly.graph_objects as go
 from pymatgen.util.coord import Simplex
 
 
-class ChempotMap():
+class ChempotMap:
     def __init__(self, pd: PhaseDiagram):
         self.pd = pd
         self.n = pd.dim
 
-    def get_chempot_range_map_plot(self, elements: list = None, limits: dict = None,
+    def plot(self, elements: list = None, limits: dict = None,
                                    comps: list = None, comps_mode="mesh",
                                    comps_colors=None, label_stable=True,
                                    default_limit: float = -15.0):
@@ -200,7 +200,7 @@ class ChempotMap():
 
     @staticmethod
     def simple_pca(data, k=2):
-        data = data - np.mean(data.T, axis=1)  # centering the data
+        data = data - np.mean(data.T, axis=1)  # centering the exp_data
         cov = np.cov(data.T)  # calculating covariance matrix
         v, w = np.linalg.eig(cov)  # performing eigendecomposition
         idx = v.argsort()[::-1]  # sorting the components
