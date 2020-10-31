@@ -12,6 +12,9 @@ To install the code as a Python package using pip, first navigate to the reposit
     pip install -r requirements.txt
     pip install .
     
+Computed data was acquired from the Materials Project (http://materialsproject.org
+), version 2020_09_08. A copy of this data can be accessed in the "computed_entries
+.json" file within the code folder.
 
 ### exp_data
 ##### AnalysisData
@@ -37,8 +40,3 @@ To install the code as a Python package using pip, first navigate to the reposit
 ##### XYE
 - Integrated X-ray diffraction patterns calculated from images in /TIFF using GSAS-II
 
-
-### computed_data
-Computed data was acquired from the Materials Project (http://materialsproject.org
-), version 2020_09_08. A copy of this data can be accessed in the computed_data
- folder within the package.
