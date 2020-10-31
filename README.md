@@ -5,7 +5,8 @@ Repository containing all code and data associated with manuscript "Selectivity 
 
 ### Code (thermochemical_connectivity)
 
-To install the code, first navigate to the repository folder in your terminal window
+To install the code as a Python package using pip, first navigate to the repository
+ folder in your terminal window
 , and then type:
  
     pip install -r requirements.txt
