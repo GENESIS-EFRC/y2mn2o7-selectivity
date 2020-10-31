@@ -5,8 +5,8 @@ Repository containing all code and data associated with manuscript "Selectivity 
 
 ### Code (thermochemical_connectivity)
 
-To install code, navigate to the repository folder in your terminal window, and then
- type:
+To install the code, first navigate to the repository folder in your terminal window
+, and then type:
  
     pip install -r requirements.txt
     pip install .
@@ -38,6 +38,6 @@ To install code, navigate to the repository folder in your terminal window, and 
 
 
 ### computed_data
-Computed data was acquired from the Materials Project (http://materialsproject
-.org), version 2020_09_08. A copy of this data can be accessed in the computed_data folder
- within the package.
+Computed data was acquired from the Materials Project (http://materialsproject.org
+), version 2020_09_08. A copy of this data can be accessed in the computed_data
+ folder within the package.

@@ -1,6 +1,8 @@
 import numpy as np
+import os
+import json
 from pymatgen import Composition, Element
-from pymatgen.analysis.phase_diagram import PhaseDiagram
+from pymatgen.analysis.phase_diagram import PhaseDiagram, PDPlotter
 import numpy as np
 
 import plotly.express as px
@@ -11,15 +13,41 @@ import plotly.graph_objects as go
 from pymatgen.util.coord import Simplex
 
 
+with open(os.path.join(os.path.dirname(__file__), "layouts.json")) as f:
+    layouts = json.load(f)
+
+
 class ChempotMap:
     def __init__(self, pd: PhaseDiagram):
+        """
+        :param pd: Phase diagram object.
+        """
         self.pd = pd
         self.n = pd.dim
 
-    def plot(self, elements: list = None, limits: dict = None,
-                                   comps: list = None, comps_mode="mesh",
-                                   comps_colors=None, label_stable=True,
-                                   default_limit: float = -15.0):
+    def plot(
+        self,
+        elements: list = None,
+        limits: dict = None,
+        comps: list = None,
+        comps_mode="mesh",
+        comps_colors=None,
+        label_stable=True,
+        default_limit: float = -15.0,
+    ):
+        """
+        Create 3D chemical potential diagram for 3 specified elements and project
+        down the stability windows for desired compositions.
+
+        :param elements: Element names
+        :param limits:
+        :param comps:
+        :param comps_mode:
+        :param comps_colors:
+        :param label_stable:
+        :param default_limit:
+        :return: Plotly figure.
+        """
 
         lims = np.array([[default_limit, 0]] * self.n)
 
@@ -38,14 +66,15 @@ class ChempotMap:
         elem_indices = [self.pd.elements.index(e) for e in elements]
 
         data = self.pd.qhull_data
-        hyperplanes = np.insert(data, [0],
-                                (1 - np.sum(data[:, :-1], axis=1)).reshape(-1, 1),
-                                axis=1)
-        hyperplanes[:, -1] = hyperplanes[:,
-                             -1] * -1  # flip to all positive energies (due to defn. of hyperplanes)
+        hyperplanes = np.insert(
+            data, [0], (1 - np.sum(data[:, :-1], axis=1)).reshape(-1, 1), axis=1
+        )
+        hyperplanes[:, -1] = (
+            hyperplanes[:, -1] * -1
+        )  # flip to all positive energies (due to defn. of hyperplanes)
         entries = self.pd.qhull_entries
 
-        border_hyperplanes = np.array(([[0] * (n + 1)] * (2 * n)))
+        border_hyperplanes = np.array(([[0] * (self.n + 1)] * (2 * self.n)))
 
         for idx, limit in enumerate(lims):
             border_hyperplanes[2 * idx, idx] = -1
@@ -60,8 +89,7 @@ class ChempotMap:
 
         # organize the boundary points by entry
         domains = {entry: [] for entry in entries}
-        for intersection, facet in zip(hs_int.intersections,
-                                       hs_int.dual_facets):
+        for intersection, facet in zip(hs_int.intersections, hs_int.dual_facets):
             for v in facet:
                 if v < len(entries):
                     this_entry = entries[v]
@@ -78,12 +106,12 @@ class ChempotMap:
         for entry, points in domains.items():
             points = np.array(points)
             points_3d = np.array(points[:, elem_indices])
-            contains_target_elems = set(entry.composition.elements).issubset(
-                elements)
+            contains_target_elems = set(entry.composition.elements).issubset(elements)
 
             if comps:
-                if entry.composition.reduced_composition in \
-                        [Composition(comp).reduced_composition for comp in comps]:
+                if entry.composition.reduced_composition in [
+                    Composition(comp).reduced_composition for comp in comps
+                ]:
                     domains[entry] = None
                     extra_domains[entry] = points_3d
 
@@ -103,18 +131,18 @@ class ChempotMap:
                 points_2d, v, w = self.simple_pca(points_3d, k=2)
                 domain = ConvexHull(points_2d)
                 centroid_2d = self.get_centroid_2d(points_2d[domain.vertices])
-                ann_loc = centroid_2d @ w.T + np.mean(points_3d.T,
-                                                      axis=1)  # recover orig 3D coords from eigenvectors
+                ann_loc = centroid_2d @ w.T + np.mean(
+                    points_3d.T, axis=1
+                )  # recover orig 3D coords from eigenvectors
 
-            simplices = [Simplex(points_3d[indices]) for indices in
-                         domain.simplices]
+            simplices = [Simplex(points_3d[indices]) for indices in domain.simplices]
 
             formula = entry.composition.reduced_formula
             if hasattr(entry, "original_entry"):
                 formula = entry.original_entry.composition.reduced_formula
 
             clean_formula = PDPlotter._htmlize_formula(formula)
-            annotation = default_chempot_annotation_layout.copy()
+            annotation = layouts["default_chempot_annotation_layout"].copy()
 
             annotation.update(
                 {
@@ -124,7 +152,8 @@ class ChempotMap:
                     "font": font_dict,
                     "text": clean_formula,
                     "opacity": opacity,
-                })
+                }
+            )
             annotations.append(annotation)
             domains[entry] = simplices
             domain_vertices[entry] = points_3d
@@ -138,48 +167,73 @@ class ChempotMap:
                     y.extend(s.coords[:, 1].tolist() + [None])
                     z.extend(s.coords[:, 2].tolist() + [None])
 
-        layout = default_chempot_layout_3d.copy()
-        layout["scene"].update({"xaxis": self.get_chempot_axis_layout(elements[0]),
-                                "yaxis": self.get_chempot_axis_layout(elements[1]),
-                                "zaxis": self.get_chempot_axis_layout(elements[2])})
+        layout = layouts["default_chempot_layout_3d"].copy()
+        layout["scene"].update(
+            {
+                "xaxis": self.get_chempot_axis_layout(elements[0]),
+                "yaxis": self.get_chempot_axis_layout(elements[1]),
+                "zaxis": self.get_chempot_axis_layout(elements[2]),
+            }
+        )
         if label_stable:
             layout["scene"].update({"annotations": annotations})
 
-        lines = [go.Scatter3d(x=x, y=y, z=z, mode="lines",
-                              line=dict(color='black', width=4.5),
-                              showlegend=False)]
+        lines = [
+            go.Scatter3d(
+                x=x,
+                y=y,
+                z=z,
+                mode="lines",
+                line=dict(color="black", width=4.5),
+                showlegend=False,
+            )
+        ]
         extra_phases = []
 
         for idx, (entry, coords) in enumerate(extra_domains.items()):
             points_3d = coords[:, :3]
             if "mesh" in comps_mode:
-                extra_phases.append(go.Mesh3d(x=points_3d[:, 0], y=points_3d[:, 1],
-                                              z=points_3d[:, 2], alphahull=0,
-                                              showlegend=True,
-                                              lighting=dict(fresnel=1.0),
-                                              color=comps_colors[idx],
-                                              name=f"{entry.composition.reduced_formula} (mesh)",
-                                              opacity=0.13))
+                extra_phases.append(
+                    go.Mesh3d(
+                        x=points_3d[:, 0],
+                        y=points_3d[:, 1],
+                        z=points_3d[:, 2],
+                        alphahull=0,
+                        showlegend=True,
+                        lighting=dict(fresnel=1.0),
+                        color=comps_colors[idx],
+                        name=f"{entry.composition.reduced_formula} (mesh)",
+                        opacity=0.13,
+                    )
+                )
             if "lines" in comps_mode:
                 # points_2d, _, _ = simple_pca(points_3d)
                 points_2d = points_3d[:, 0:2]
                 domain = ConvexHull(points_2d)
-                simplexes = [Simplex(points_3d[indices]) for indices in
-                             domain.simplices]
+                simplexes = [
+                    Simplex(points_3d[indices]) for indices in domain.simplices
+                ]
                 x, y, z = [], [], []
                 for s in simplexes:
                     x.extend(s.coords[:, 0].tolist() + [None])
                     y.extend(s.coords[:, 1].tolist() + [None])
                     z.extend(s.coords[:, 2].tolist() + [None])
 
-                extra_phases.append(go.Scatter3d(x=x, y=y, z=z, mode="lines",
-                                                 line={"width": 8, "color":
-                                                     comps_colors[idx]},
-                                                 opacity=1.0,
-                                                 name=f"{entry.composition.reduced_formula} (lines)"))
+                extra_phases.append(
+                    go.Scatter3d(
+                        x=x,
+                        y=y,
+                        z=z,
+                        mode="lines",
+                        line={"width": 8, "color": comps_colors[idx]},
+                        opacity=1.0,
+                        name=f"{entry.composition.reduced_formula} (lines)",
+                    )
+                )
 
-        layout["scene_camera"] = dict(eye=dict(x=0, y=0, z=2.0),
-                                      projection=dict(type="orthographic"))
+        layout["scene_camera"] = dict(
+            eye=dict(x=0, y=0, z=2.0), projection=dict(type="orthographic")
+        )
         fig = go.Figure(lines + extra_phases, layout)
 
         return fig
@@ -187,16 +241,17 @@ class ChempotMap:
     @staticmethod
     def get_chempot_axis_layout(element):
         return dict(
-            #title=f"μ<sub>{str(element)}</sub> - μ<sub>"
-                  #f"{str(element)}</sub><sup>o</sup> (eV)",
-            title="",
-            titlefont={"size": 30}, gridcolor="#e8e8e8",
+            title=f"μ<sub>{str(element)}</sub> - μ<sub>"
+            f"{str(element)}</sub><sup>o</sup> (eV)",
+            titlefont={"size": 30},
+            gridcolor="#e8e8e8",
             gridwidth=3.5,
             tickfont={"size": 16},
             ticks="inside",
             ticklen=14,
             showline=True,
-            backgroundcolor="rgba(0,0,0,0)")
+            backgroundcolor="rgba(0,0,0,0)",
+        )
 
     @staticmethod
     def simple_pca(data, k=2):
