@@ -30,22 +30,26 @@ class ChempotMap:
         elements: list = None,
         limits: dict = None,
         comps: list = None,
-        comps_mode="mesh",
-        comps_colors=None,
-        label_stable=True,
+        comps_mode: str = "mesh",
+        comps_colors: list = None,
+        label_stable: bool = True,
         default_limit: float = -15.0,
     ):
         """
         Create 3D chemical potential diagram for 3 specified elements and project
         down the stability windows for desired compositions.
 
-        :param elements: Element names
-        :param limits:
-        :param comps:
-        :param comps_mode:
-        :param comps_colors:
-        :param label_stable:
-        :param default_limit:
+        :param elements: Element names.
+        :param limits: Dictionary of {Element: [lower_bound, upper_bound]} chemical
+        potential limits in calculating chemical potential diagram.
+        :param comps: Formulas for compositions to project down and highlight. Can
+        also include formulas of phases in the diagram.
+        :param comps_mode: Choose from ["mesh","lines","mesh+lines"] to determine
+        how the projected compositions are shaded.
+        :param comps_colors: List of colors used in shading projected comps.
+        :param label_stable: Whether or not to add phase annotations.
+        :param default_limit: Default lower limit for chemical potentials of excluded elements.
+
         :return: Plotly figure.
         """
 
@@ -207,7 +211,6 @@ class ChempotMap:
                     )
                 )
             if "lines" in comps_mode:
-                # points_2d, _, _ = simple_pca(points_3d)
                 points_2d = points_3d[:, 0:2]
                 domain = ConvexHull(points_2d)
                 simplexes = [
@@ -255,6 +258,7 @@ class ChempotMap:
 
     @staticmethod
     def simple_pca(data, k=2):
+        """ Simple implementation of Principal Component Analaysis"""
         data = data - np.mean(data.T, axis=1)  # centering the exp_data
         cov = np.cov(data.T)  # calculating covariance matrix
         v, w = np.linalg.eig(cov)  # performing eigendecomposition
@@ -267,7 +271,8 @@ class ChempotMap:
 
     @staticmethod
     def get_centroid_2d(vertices):
-        """ vertices must be in order"""
+        """ Simple implementation of 2D centroid formula for annotations. Vertices must
+        be provided in order going around around the polygon"""
         n = len(vertices)
         cx = 0
         cy = 0

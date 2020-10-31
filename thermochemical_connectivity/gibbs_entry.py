@@ -1,7 +1,6 @@
 from pymatgen.analysis.phase_diagram import PhaseDiagram
 from pymatgen.entries.computed_entries import ComputedStructureEntry
 
-import abc
 from itertools import combinations
 import json
 import os
@@ -10,13 +9,9 @@ from typing import List
 import numpy as np
 from scipy.interpolate import interp1d
 from monty.json import MontyDecoder, MontyEncoder, MSONable
-from uncertainties import ufloat
 
 from pymatgen.core.composition import Composition
 from pymatgen.core.structure import Structure
-from pymatgen.entries import Entry
-
-from monty.json import MSONable
 
 
 __author__ = "Matthew McDermott"
