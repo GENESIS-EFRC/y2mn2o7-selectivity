@@ -1,16 +1,7 @@
 " Core interfaces for RXN Network"
 from abc import ABCMeta, abstractmethod, abstractproperty
-from functools import cached_property
-from typing import List
-import logging
-
-import numpy as np
 from monty.json import MSONable
-from pymatgen.core.composition import Composition, Element
-from pymatgen.entries import Entry
-
 from rxn_network.core.reaction import Reaction
-from rxn_network.core.pathway import Pathway
 
 
 class Calculator(MSONable, metaclass=ABCMeta):

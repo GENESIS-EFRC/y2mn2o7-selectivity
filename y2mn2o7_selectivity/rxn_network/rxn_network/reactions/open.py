@@ -2,7 +2,7 @@ from typing import List, Dict, Optional
 
 import numpy as np
 
-from pymatgen import Element
+from pymatgen.core import Element
 from pymatgen.entries import Entry
 from pymatgen.analysis.phase_diagram import GrandPotPDEntry
 from rxn_network.reactions.computed import ComputedReaction
