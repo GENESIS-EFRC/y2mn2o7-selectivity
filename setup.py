@@ -5,7 +5,7 @@ module_dir = os.path.dirname(os.path.abspath(__file__))
 
 if __name__ == "__main__":
     setup(
-        name='thermochemical-connectivity',
+        name='y2mn2o7_selectivity',
         version='0.0.1',
         description='Code/exp_data for thermochemical connectivity manuscript.',
         long_description=open(os.path.join(module_dir, 'README.md')).read(),

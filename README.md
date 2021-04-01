@@ -1,19 +1,17 @@
-# thermochemical-connectivity
-Repository containing all code and data associated with manuscript "Selectivity in
- materials synthesis via thermochemical connectivity in hyperdimensional phase space".
+# y2mn2o7-selectivity
+Repository containing all code and data associated with manuscript "Selectivity in materials synthesis via local chemical potentials in hyperdimensional phase space".
 
 
-### Code (thermochemical_connectivity)
+### Code (y2mn2o7_selectivity)
 
-To install the code as a Python package using pip, first navigate to the repository
- folder in your terminal window
-, and then type:
+To install the code as a Python package using pip, first navigate to the repository 
+folder in your terminal window and then type:
  
     pip install -r requirements.txt
     pip install .
     
 Computed data was acquired from the Materials Project (http://materialsproject.org
-), version 2020_09_08. A copy of this data can be accessed in the "computed_entries
+), version 2021_03_22. A copy of this data can be accessed in the "computed_entries
 .json" file within the code folder.
 
 ### exp_data
