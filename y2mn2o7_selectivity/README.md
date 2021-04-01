@@ -4,7 +4,7 @@
   future.
 
 #### computed_entries.json
-- JSON copy of Materials Project ComputedStructureEntry data for the C-Cl-K-Li-Mn-Na-O-Y
+- JSON copy of Materials Project entry data for the C-Cl-K-Li-Mn-Na-O-Y
  chemical system.
   
 #### plotting_scripts.ipnyb 
