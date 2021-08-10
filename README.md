@@ -24,7 +24,7 @@ The plotting script notebooks should now be usable after beginning a Jupyter
 notebook server.
 
 NOTE: Computed data was acquired from the Materials Project (http://materialsproject.org
-), version 2021.05.13. A copy of this data can be accessed in the "computed_entries_C_Cl_K_Li_Mn_Na_O_Y_08_08_21.json.gz" file within the y2mn2o7_selectivity folder.
+), version 2021.05.13. A copy of this data can be accessed in the `computed_entries_C_Cl_K_Li_Mn_Na_O_Y_08_08_21.json.gz` file within the y2mn2o7_selectivity folder.
 
 ### exp_data
 ##### AnalysisData
