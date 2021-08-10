@@ -1,12 +1,13 @@
 # y2mn2o7-selectivity
-Repository containing all code and data associated with manuscript "Selectivity in 
-materials synthesis via local chemical potentials in hyperdimensional phase space" 
+Repository containing all code and data associated with manuscript "Selectivity in yttrium manganese oxide synthesis via local chemical potentials in hyperdimensional phase space" 
 (2021).
 
 ### Code (y2mn2o7_selectivity)
 
-To install the code as a Python package using pip, we recommend creating a new conda 
-environment. After activating the conda environment and cloning this repository, first 
+To install the code as a Python package using pip, we recommend **creating a new conda 
+environment with Python 3.9**.
+
+After activating the conda environment and cloning this repository, first 
 navigate to the repository folder in your terminal window and then type:
  
     pip install -r requirements.txt
@@ -16,15 +17,14 @@ A standalone copy of the necessary scripts in the reaction-network package was
 included to ensure future compatability with generated entries/data in this work. To 
 install this package, type in your terminal window:
 
-    cd y2mn2o7_selectivity/rxn_network
+    cd y2mn2o7_selectivity/reaction-network
     pip install -e .
 
 The plotting script notebooks should now be usable after beginning a Jupyter 
 notebook server.
 
 NOTE: Computed data was acquired from the Materials Project (http://materialsproject.org
-), version 2021_03_22. A copy of this data can be accessed in the "computed_entries
-.json" file within the y2mn2o7_selectivity folder.
+), version 2021.05.13. A copy of this data can be accessed in the "computed_entries_C_Cl_K_Li_Mn_Na_O_Y_08_08_21.json.gz" file within the y2mn2o7_selectivity folder.
 
 ### exp_data
 ##### AnalysisData
