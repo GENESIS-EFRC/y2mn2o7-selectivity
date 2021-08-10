@@ -1,1 +1,0 @@
-Stripped down reaction-network package.
